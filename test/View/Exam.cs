@@ -179,7 +179,11 @@ namespace test.View
             lbCountdown.Text = timeText;
 
             btPrevious.Visible = false;
-            btSubmit.Visible = false;
+            if (tests.Count - 1 == answers.Count)
+            {
+                btSubmit.Visible = true;
+                btNext.Visible = false;
+            }    
 
             //getControls into List
             foreach (Control control in panel.Controls)
@@ -462,11 +466,16 @@ namespace test.View
             messageBoxCus.InitModeFinish();
             messageBoxCus.ShowDialog();
 
+            timer1.Enabled=false;
+
             this.Close();
 
-            timer1.Enabled=false;
             Main main= new Main();
+            main.addHistory = true;
+            main.AddHistory("tran kim bang", point.ToString());
             main.ShowDialog();
+            //main.addHistory();
+
         }
         
 

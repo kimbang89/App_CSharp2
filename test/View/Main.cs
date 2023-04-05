@@ -1,4 +1,5 @@
 ﻿using LinqToExcel;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,18 +20,72 @@ namespace test.View
     {
         private ImageList img;
         private static string[] files;
-
-        MessageBoxCus messageBoxCus = new MessageBoxCus();
         private List<TestModel> tests= new List<TestModel>();
+        private DataTable dt = new DataTable();
+        MessageBoxCus messageBoxCus = new MessageBoxCus();
+        public bool addHistory=false;
 
         public List<TestModel> Tests
         {
             get { return tests; }
         }
+        public void AddHistory(string name, string score)
+        {
+            DateTime currentDate = DateTime.Now;
+
+            var excel = new ExcelQueryFactory(Environment.GetEnvironmentVariable("test_DIRECTORY") + @"\\Resources\\history\\history.xlsx");// Tạo một đối tượng workBook, chứa các trang tính (workshet)
+
+            //lấy từng row trong sheet1 trả về một mảng chứa các row kiểu Test(..,..,..)
+            var test = from ts in excel.Worksheet<HistoryColumn>("Sheet1") select ts;//truy vấn dữ liệu từ Sheet1 trong excel, và lưu kết quả vào biến hocVien.
+
+            //test là từng row trong workSheet
+            foreach (var item in test)
+            {
+                dt.Rows.Add(item.Name, item.Score, item.Date);
+            }
+
+            dt.Rows.Add(name, score, currentDate);
+
+            dt.AcceptChanges();//Xác nhận việc thay đổi dữ liệu trên DataTable.
+            tableHistory.DataSource = dt;
+
+
+
+            // Mở tệp Excel
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            using (ExcelPackage package = new ExcelPackage(Environment.GetEnvironmentVariable("test_DIRECTORY") + @"\\Resources\\history\\history.xlsx"))
+            {
+                ExcelWorksheet worksheet = package.Workbook.Worksheets["Sheet1"];//tạo đối tượng bảng tính worksheet
+
+                int rowCount = 0;
+                for (int row = 1; row <= worksheet.Dimension.End.Row; row++)
+                {
+                    if (worksheet.Cells[row, 1].Value != null)
+                    {
+                        rowCount++;
+                    }
+                }
+
+                //int rowCount=worksheet.Dimension.Rows-1;//số lượng dòng trong bảng tính 
+                                                            //Cells[row,col]
+                                                            //row[nameCol] hiểu là lấy giá trị của nameCol current gán cho row vị trí vế phải
+                MessageBox.Show(rowCount.ToString(),dt.Rows.Count.ToString());
+                for (int i = 0; i < dt.Columns.Count; i++)
+                {
+                    worksheet.Cells[rowCount + 1, i + 1].Value = dt.Rows[rowCount - 1][i];
+                }
+                package.Save();// Lưu tệp Excel
+            }
+
+        }
 
         public Main()
         {
             InitializeComponent();
+            dt.Columns.Add("Name");
+            dt.Columns.Add("Score");
+            dt.Columns.Add("Date");
+
         }
         private void Main_Load(object sender, EventArgs e)
         {
@@ -54,6 +109,22 @@ namespace test.View
             //    btEditTest.Visible = false;
             //    btDelete.Visible = false;
             //}
+
+            if (!addHistory)
+            {
+                var excel = new ExcelQueryFactory(Environment.GetEnvironmentVariable("test_DIRECTORY") + @"\\Resources\\history\\history.xlsx");// Tạo một đối tượng workBook, chứa các trang tính (workshet)
+
+                //lấy từng row trong sheet1 trả về một mảng chứa các row kiểu Test(..,..,..)
+                var test = from ts in excel.Worksheet<HistoryColumn>("Sheet1") select ts;//truy vấn dữ liệu từ Sheet1 trong excel, và lưu kết quả vào biến hocVien.
+
+                //test là từng row trong workSheet
+                foreach (var item in test)
+                {
+                    dt.Rows.Add(item.Name, item.Score, item.Date);
+                }
+                dt.AcceptChanges();//Xác nhận việc thay đổi dữ liệu trên DataTable.
+                tableHistory.DataSource = dt;
+            }
         }
         public void LoadImageList()
         {
