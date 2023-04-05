@@ -38,6 +38,8 @@
             this.radioBt2 = new Guna.UI2.WinForms.Guna2CustomRadioButton();
             this.tick1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.panel = new Guna.UI2.WinForms.Guna2Panel();
+            this.ptTimeout = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.pnQues = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.content = new System.Windows.Forms.RichTextBox();
             this.panelAns1 = new Guna.UI2.WinForms.Guna2GradientPanel();
@@ -74,10 +76,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lbGoBack = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.ptTimeout = new Guna.UI2.WinForms.Guna2PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.tick1)).BeginInit();
             this.panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptTimeout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.pnQues.SuspendLayout();
             this.panelAns1.SuspendLayout();
             this.panelAns2.SuspendLayout();
@@ -88,8 +90,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tick3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tick4)).BeginInit();
             this.guna2ShadowPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptTimeout)).BeginInit();
             this.SuspendLayout();
             // 
             // btBack
@@ -184,6 +184,7 @@
             this.btSubmit.Size = new System.Drawing.Size(245, 52);
             this.btSubmit.TabIndex = 91;
             this.btSubmit.Text = "Submit";
+            this.btSubmit.Visible = false;
             this.btSubmit.Click += new System.EventHandler(this.btSubmit_Click);
             // 
             // btNext
@@ -276,6 +277,27 @@
             this.panel.ShadowDecoration.BorderRadius = 10;
             this.panel.Size = new System.Drawing.Size(1476, 631);
             this.panel.TabIndex = 50;
+            // 
+            // ptTimeout
+            // 
+            this.ptTimeout.Image = ((System.Drawing.Image)(resources.GetObject("ptTimeout.Image")));
+            this.ptTimeout.ImageRotate = 0F;
+            this.ptTimeout.Location = new System.Drawing.Point(-13, 529);
+            this.ptTimeout.Name = "ptTimeout";
+            this.ptTimeout.Size = new System.Drawing.Size(198, 99);
+            this.ptTimeout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptTimeout.TabIndex = 104;
+            this.ptTimeout.TabStop = false;
+            this.ptTimeout.Visible = false;
+            // 
+            // guna2PictureBox1
+            // 
+            this.guna2PictureBox1.ImageRotate = 0F;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(564, 587);
+            this.guna2PictureBox1.Name = "guna2PictureBox1";
+            this.guna2PictureBox1.Size = new System.Drawing.Size(300, 200);
+            this.guna2PictureBox1.TabIndex = 103;
+            this.guna2PictureBox1.TabStop = false;
             // 
             // pnQues
             // 
@@ -703,27 +725,6 @@
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label6.Visible = false;
             // 
-            // guna2PictureBox1
-            // 
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(564, 587);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(300, 200);
-            this.guna2PictureBox1.TabIndex = 103;
-            this.guna2PictureBox1.TabStop = false;
-            // 
-            // ptTimeout
-            // 
-            this.ptTimeout.Image = ((System.Drawing.Image)(resources.GetObject("ptTimeout.Image")));
-            this.ptTimeout.ImageRotate = 0F;
-            this.ptTimeout.Location = new System.Drawing.Point(-13, 529);
-            this.ptTimeout.Name = "ptTimeout";
-            this.ptTimeout.Size = new System.Drawing.Size(198, 99);
-            this.ptTimeout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ptTimeout.TabIndex = 104;
-            this.ptTimeout.TabStop = false;
-            this.ptTimeout.Visible = false;
-            // 
             // Exam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -757,6 +758,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.tick1)).EndInit();
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptTimeout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.pnQues.ResumeLayout(false);
             this.panelAns1.ResumeLayout(false);
             this.panelAns2.ResumeLayout(false);
@@ -767,8 +770,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tick3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tick4)).EndInit();
             this.guna2ShadowPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptTimeout)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

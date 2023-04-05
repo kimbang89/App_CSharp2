@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\AnsModel.cs" />
+    <Compile Include="Code\HistoryColumn.cs" />
     <Compile Include="Code\TestModel.cs" />
     <Compile Include="Code\TestColumns.cs" />
     <Compile Include="View\Exam.cs">
