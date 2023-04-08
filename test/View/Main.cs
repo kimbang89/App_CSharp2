@@ -69,7 +69,7 @@ namespace test.View
                 //int rowCount=worksheet.Dimension.Rows-1;//số lượng dòng trong bảng tính 
                                                             //Cells[row,col]
                                                             //row[nameCol] hiểu là lấy giá trị của nameCol current gán cho row vị trí vế phải
-                MessageBox.Show(rowCount.ToString(),dt.Rows.Count.ToString());
+                //MessageBox.Show(rowCount.ToString(),dt.Rows.Count.ToString());
                 for (int i = 0; i < dt.Columns.Count; i++)
                 {
                     worksheet.Cells[rowCount + 1, i + 1].Value = dt.Rows[rowCount - 1][i];
